@@ -1,0 +1,104 @@
+<div class="container" style="padding-bottom:60px;padding-top:10px;">
+	<div class="row">
+		<ol class="breadcrumb">
+			<li>
+				<a href="" ng-click="go('/')">Home</a>
+			</li>
+			<li class="active">Details</li>
+		</ol>
+	</div>
+	<h1>
+		<img data-ng-src="{{lawyer.imageData[0]}}" ng-if="lawyer.imageData[0]"/>
+		<img data-ng-src="{{'images/photo-not-available.jpg'}}" ng-if="!lawyer.imageData[0]" height="100px"/>
+		{{lawyer.firstName[0]}} {{lawyer.lastName[0]}}
+	</h1>
+	<br />
+	<span data-ng-if="lawyer.experience">
+		Experience : {{lawyer.experience[0]}} years
+		<br/>
+		<br/>
+	</span>
+
+	<div class="panel panel-primary" ng-if="lawyer.summary[0]">
+		<div class="panel-heading">
+			<h3 class="panel-title"> <i class="fa fa-user"></i>
+				About
+			</h3>
+		</div>
+		<div class="panel-body" style="padding-left:15px;">{{lawyer.summary[0]}}</div>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title"> <i class="fa fa-university"></i>
+				Case Types
+			</h3>
+		</div>
+		<div class="panel-body" style="padding-left:15px;">
+			<ul>
+				<li ng-repeat="caseType in lawyer.caseTypes">{{caseType}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<i class="fa fa-map-marker"></i>
+				Address
+			</h3>
+		</div>
+		<div class="panel-body" style="padding-left:15px;">
+			<div class="col-md-9">
+				<!-- <span data-ng-if="lawyer.addressLine1[0]">{{lawyer.addressLine1[0]}},</span>
+			<span data-ng-if="lawyer.addressLine2[0]">{{lawyer.addressLine2[0]}},</span>
+			<br>
+			-->
+			<span data-ng-if="lawyer.locality[0]">
+				{{lawyer.locality[0]}},
+				<br></span>
+			<span data-ng-if="lawyer.city[0] || lawyer.state[0] || lawyer.pin[0]">
+				{{lawyer.city[0]}}	{{lawyer.state[0]}}  {{lawyer.pin[0]}}
+
+				</span>
+				
+			<br></div>
+		<div class="col-md-3">
+			<div style="width:100%;height:200px;" id="{{lawyer.id}}"></div>
+			<br><br>
+			<button class="btn btn-primary pull-left" data-ng-click="go('/order/'+ lawyer.id)">Click to Consult</button>
+		</div>
+	</div>
+</div>
+<!-- <div class="panel panel-primary">
+<div class="panel-heading">
+	<h3 class="panel-title">
+		<i class="fa fa-pencil"></i>
+		Contact Info
+	</h3>
+</div>
+<div class="panel-body" style="padding-left:15px;">
+	<a data-ng-href="tel:{{lawyer.mobile[0]}}">
+		<i class="fa fa-phone"></i>
+		{{lawyer.mobile[0]}}
+	</a>
+	,
+	<a data-ng-href="tel:{{lawyer.std[0]}}-{{lawyer.landline[0]}}">
+		<i class="fa fa-phone"></i>
+		{{lawyer.std[0]}}-{{lawyer.landline[0]}}
+	</a>
+	<br>
+	<a data-ng-href="mailto:{{lawyer.email[0]}}">
+		<i class="fa fa-envelope-o"></i>
+		{{lawyer.email[0]}}
+	</a>
+	<br>
+	<i class="fa fa-building"></i>
+	{{lawyer.organization[0]}}
+	<br>
+	<a data-ng-href="{{lawyer.website[0]}}">
+		<i class="fa fa-sitemap"></i>
+		{{lawyer.website[0]}}
+	</a>
+</div>
+</div>
+-->
+</div>

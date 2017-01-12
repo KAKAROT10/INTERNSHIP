@@ -1,0 +1,138 @@
+<style type="text/css">
+.circle-text {
+    width:100px;
+    display:inline-block;
+}
+.circle-text:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    background: white; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    border: 2px solid #286090;
+}
+.circle-text:hover:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    background: #286090; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    border: 2px solid #286090;
+    cursor: pointer;
+    color:white;
+}
+.circle-text div {
+    float:left;
+    width:100%;
+    padding-top:50%;
+    line-height:1em;
+    margin-top:-0.5em;
+    text-align:center;
+    color:#286090;
+    font-size:1em;
+}
+.circle-text div:hover {
+    float:left;
+    width:100%;
+    padding-top:50%;
+    line-height:1em;
+    margin-top:-0.5em;
+    text-align:center;
+    color:white;
+    font-size:1em;
+    cursor: pointer;
+}
+</style>
+<div class="container-fluid" style="height:100%; padding-bottom:50px;">
+
+	<div style="height:100%;padding-bottom:50px;">
+
+		 <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+            </ol>
+
+            <!-- Wrapper for Slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <!-- Set the first background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url('images/law.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h2>Find Your Lawyer</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Set the second background image using inline CSS below. -->
+                    <div class="fill" style="background-image:url('images/ca.jpg');"></div>
+                    <div class="carousel-caption">
+                        <h2>Find Your Chartered Accountants</h2>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
+
+        </header>
+    	<!-- Script to Activate the Carousel -->
+	    <script>
+	    $('.carousel').carousel({
+	        interval: 5000 //changes the speed
+	    })
+	    </script>
+	    <div style="background-color:#286090;margin-top:30px;">
+			<form ng-controller="SearchController" class="form-inline" style="text-align:center;padding:30px 0px 30px 0px;">
+    			<div class="form-group">&nbsp;</div>
+                <div class="form-group">
+                <label>Select: </label>
+                <div class="form-group">&nbsp;</div>
+                    <input type="radio" name="select" id="lawyer" value="lawyer" data-ng-click="function1()" checked="checked"> Lawyer
+                <div class="form-group">&nbsp;</div>
+                <div class="form-group">&nbsp;</div>
+                    <input type="radio" name="select" id="ca" value="ca" data-ng-click="function2()"> CA<br>  
+                </div>
+                <br>
+				<div class="form-group">
+				<autocomplete click-activation="true" ng-model="global.locality" data="global.availableLocalities[global.city]" attr-placeholder="Location" attr-input-class="form-control input-lg backGroundColorWhiteSmoke"></autocomplete>
+    			</div>
+    				<div class="form-group" style="width:10px"></div>
+    			<div class="form-group">
+				<autocomplete click-activation="true" ng-model="global.caseType" data="global.newCaseType" attr-placeholder="Case Type" attr-input-class="form-control input-lg backGroundColorWhiteSmoke"></autocomplete>
+    			</div>
+				<div class="form-group" style="width:10px"></div>
+				<button class="btn btn-default btn-lg" data-ng-click="goButtonClicked()">Go</button>
+			</form>
+		</div>	
+		<!-- <div style="height:40px"></div>
+		<div class="container">
+			<center>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+                <div class="circle-text"><div>Circle</div></div><div style="width:80px; display:inline-block;"></div>
+			</center>
+		</div> -->
+	</div>
+</div>

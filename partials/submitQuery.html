@@ -1,0 +1,36 @@
+<div class="container" style="padding-bottom:60px;padding-top:10px;">
+	<div class="row">
+		<ol class="breadcrumb">
+		  <li><a href="" ng-click="go('/')">Home</a></li>
+		  <li class="active">Submit Query</li>
+		</ol>
+	</div>
+	<form class="form-horizontal">
+		<h3>Submit a legal or professional query</h3>
+		<div class="form-group form-group-md">
+			<div class="col-md-12">
+				<textarea data-ng-model="query.queryText" class="form-control" placeholder="Type your query here..." rows="10"></textarea>
+			</div>
+		</div>
+		<h4>Email ID</h4>
+		<div class="form-group form-group-md">
+			 	<div class="col-md-12">
+	                        <!--textarea data-ng-model="query.mailid" class="form-control" placeholder=" eg:abc@gmail.com" rows="1"></textarea-->
+	                    <input type="email" class="form-control" placeholder="eg:abc@gmail.com" data-ng-model="query.mailid">
+	            </div>
+		</div>
+	    <h4>Any special comments</h4>
+	    <div class="form-group form-group-md">
+	        <div class="col-md-12">
+	                <textarea data-ng-model="query.comments" class="form-control" placeholder="For eg: mention preferences or contact information" rows="2"></textarea>
+	        </div>
+	    </div>
+	    <p style="font-family:verdana">NOTE:<small><i>We revert to your queries within 1 working day generally</i></small></p>
+		<br/>
+		<div class="form-group form-group-md">
+			<div class="col-md-12">
+				<center><button data-ng-click="submitData()" class="btn btn-primary">Submit</button></center>
+			</div>
+		</div>
+	</form>
+</div>

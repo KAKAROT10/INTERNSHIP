@@ -1,0 +1,130 @@
+<div class="container" style="padding-bottom:60px;padding-top:10px;">
+	<div class="row">
+		<ol class="breadcrumb">
+		  <li><a href="" ng-click="go('/')">Home</a></li>
+		  <li class="active">Search Results</li>
+		</ol>
+	</div>
+	<button class="btn btn-primary btn-md filtersReverseClass" ng-click="onFiltersClick()">Filters</button>
+	<div class="row filtersClass">
+		<div class="col-md-12">
+			<form class="form-inline">
+                <label>Select: </label>
+                    <input type="radio" name="select" id="lawyer" value="lawyer" data-ng-click="function1()" checked="checked"> Lawyer 
+                    <input type="radio" name="select" id="ca" value="ca" data-ng-click="function2()"> CA<br><br>              
+				<label>Modify Search: </label>
+				<div class="form-group">
+					<autocomplete multiple = "multiple" click-activation="true" ng-model="global.locality" data="global.availableLocalities[global.city]" attr-placeholder="Location" attr-input-class="form-control input-md backGroundColorWhiteSmoke"></autocomplete>
+				</div>
+				<div class="form-group">
+					<autocomplete click-activation="true" ng-model="global.caseTypes" data="global.newCaseType" attr-placeholder="Case Type" attr-input-class="form-control input-md backGroundColorWhiteSmoke"></autocomplete>
+				</div>
+                <br><br>
+                <label>Distance Filter: </label>                
+                <input type="number" name="distance" id="distance" ng-model="global.distance" value="30" placeholder="30 (km)" class="form-control input-md backGroundColorWhiteSmoke ng-valid ng-valid-required ng-touched" id ng-required>                                                            
+				<button class="btn btn-primary btn-md" data-ng-click="goButtonClicked()">Go</button>
+			</form>
+		</div>
+	</div>
+	<div class="row" style="padding-top:20px;">
+		<div class="col-md-3 filtersClass">
+			<div class="panel panel-primary" data-ng-repeat="facet in facets" ng-if="result.response.numFound>0">
+				<div class="panel-heading clickable" data-ng-click="panelView=!panelView;" data-ng-init="panelView = true;">
+					<h3 class="panel-title">{{facet.name}}</h3>
+					<span class="pull-right"> <i ng-class="{'glyphicon glyphicon-chevron-up' : panelView == true, 'glyphicon glyphicon-chevron-down' : panelView == false}"></i>
+					</span>
+				</div>
+				<div style="padding-left:15px;" data-ng-if="panelView">
+					<div class="checkbox" data-ng-repeat="facetData in facet.data | orderBy:'-count'" data-ng-if="facetData.count>0">
+						<label>
+							<input type="checkbox" data-ng-click="selectFacet(facet, facetData)">{{facetData.facetName}} ({{facetData.count}})</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			{{result.response.numFound}} matches found
+			<div class="row" style="border-style:dotted;border-width:1px 0px 0px 0px;border-color:blue;padding: 15px 15px 15px 0px;" data-ng-repeat="lawyer in result.response.docs">
+				<div class="col-md-2">
+					<img data-ng-src="{{lawyer.imageData[0]}}" ng-if="lawyer.imageData[0]"/>
+					<img data-ng-src="{{'images/photo-not-available.jpg'}}" ng-if="!lawyer.imageData[0]" height="100px"/>
+				</div>
+				<div class="col-md-5">
+					<h4 style="color:#337ab7; cursor:pointer;" data-ng-click="go('/details/'+ lawyer.id)">{{lawyer.firstName+' '+lawyer.lastName}}</h4>
+					
+					Profession : {{lawyer.mode[0]}}<br/>
+					<span data-ng-if="lawyer.experience">
+						Experience : {{lawyer.experience[0]}} years
+						<br></span><br>
+					<!-- <span data-ng-if="lawyer.enrollmentId[0]">
+						Enrollment ID : {{lawyer.enrollmentId[0]}}
+						<br></span>
+					<span data-ng-if="lawyer.organization[0]">
+						<i><a data-ng-href="{{lawyer.website[0]}}">{{lawyer.organization[0]}}</a></i> 
+						<br></span>
+					<span data-ng-if="lawyer.addressLine1[0]">
+						{{lawyer.addressLine1[0]}},
+						<br></span>
+					<span data-ng-if="lawyer.addressLine2[0]">
+						{{lawyer.addressLine2[0]}},
+						<br></span>
+					<span data-ng-if="lawyer.locality[0]">
+						{{lawyer.locality[0]}},
+						<br></span>
+					<span data-ng-if="lawyer.city[0] || lawyer.state[0] || lawyer.pin[0]">
+						{{lawyer.city[0]}},	{{lawyer.state[0]}} - {{lawyer.pin[0]}}
+						<br></span>
+					<span data-ng-if="lawyer.mobile[0] || lawyer.landline[0]">
+						<a data-ng-if="lawyer.mobile[0]" data-ng-href="tel:{{lawyer.mobile[0]}}">
+							<i class="fa fa-phone"></i>
+							{{lawyer.mobile[0]}}
+						</a>
+						,
+						<a data-ng-if="lawyer.landline[0]" data-ng-href="tel:{{lawyer.std[0]}}-{{lawyer.landline[0]}}">
+							<i class="fa fa-phone"></i>
+							{{lawyer.std[0]}}-{{lawyer.landline[0]}}
+						</a>
+						<br></span>
+					<span data-ng-if="lawyer.email[0]">
+						<a data-ng-href="mailto:{{lawyer.email[0]}}">
+							<i class="fa fa-envelope-o"></i>
+							{{lawyer.email[0]}}
+						</a>
+						<br></span>
+					<span data-ng-if="lawyer.website[0]">
+						<a data-ng-href="{{lawyer.website[0]}}">
+							<i class="fa fa-sitemap"></i>
+							{{lawyer.website[0]}}
+						</a>
+						<br></span> -->
+					<span data-ng-if="lawyer.locality[0]">
+						{{lawyer.locality[0]}},
+						<br></span>
+					<span data-ng-if="lawyer.city[0] || lawyer.state[0] || lawyer.pin[0]">
+						{{lawyer.city[0]}}	{{lawyer.state[0]}}  {{lawyer.pin[0]}}
+						<br></span><br>
+                    <span>
+                        {{lawyer.distance[0]}} km.
+                    </span><br>
+					<span data-ng-if="lawyer.caseTypes[0]">
+						<i class="fa fa-check-square"></i>
+						<span ng-repeat="caseType in lawyer.caseTypes">{{caseType+", "}}</span> Others 
+						<br><br>
+					</span>
+					<span>
+						<button class="btn btn-primary" data-ng-click="go('/order/'+ lawyer.id)">Click to Comsult</button>
+						<br>
+					</span>
+					<!--<span data-ng-if="lawyer.fieldName1[0]">
+						<br>{{lawyer.fieldName1[0]}} : {{lawyer.fieldValue1[0]}}</span>
+					<span data-ng-if="lawyer.fieldName2[0]">
+						<br>{{lawyer.fieldName2[0]}} : {{lawyer.fieldValue2[0]}}</span>-->
+				</div>
+				<div class="col-md-5">
+					<div style="width:100%;height:200px;" id="{{lawyer.id}}"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container" style="padding-bottom:60px;padding-top:10px;">
+	<div class="row">
+		<ol class="breadcrumb">
+		  <li><a href="" ng-click="go('/')">Home</a></li>
+		  <li class="active">{{mode=='edit'?'Edit':'Register'}} User</li>
+		</ol>
+	</div>
+	<h2>{{mode=='edit'?'Edit':'Register'}} for User</h2>
+	<form class="form-horizontal" style="background:rgb(241,241,241);">
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label"></label>
+			<div class="col-md-7"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">First Name</label>
+			<div class="col-md-7">
+				<input type="text" class="form-control" placeholder="First Name" data-ng-model="person.firstName"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Last Name</label>
+			<div class="col-md-7">
+				<input type="text" class="form-control" placeholder="Last Name" data-ng-model="person.lastName"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Email</label>
+			<div class="col-md-7">
+				<input type="email" class="form-control" placeholder="abcd@xyz.com" data-ng-model="person.email"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Password</label>
+			<div class="col-md-7">
+				<input type="password" class="form-control" placeholder="Password" data-ng-model="person.password"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<div class="col-md-10 text-center">
+				<button data-ng-click="submitData()" class="btn btn-primary">Submit</button>
+			</div>
+			<br>
+			<br></div>
+	</form>
+</div>

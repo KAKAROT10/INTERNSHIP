@@ -1,0 +1,224 @@
+<div class="container" style="padding-bottom:60px;padding-top:10px;">
+	<div class="row">
+		<ol class="breadcrumb">
+		  <li><a href="" ng-click="go('/')">Home</a></li>
+		  <li class="active">{{mode=='edit'?'Edit':'Register'}} {{person.mode}}</li>
+		</ol>
+	</div>
+	<h2>{{mode=='edit'?'Edit':'Register'}} {{person.mode}}</h2>
+	<form class="form-horizontal" style="background:rgb(241,241,241);">
+		<legend style="padding-left:5px;" style="padding-left:5px;">Personal Information</legend>
+		<div class="form-group form-group-md" ng-if="mode=='edit'">
+			<label class="col-md-3 control-label">ID</label>
+			<div class="col-md-7">
+				<p class="form-control-static">{{person.id}}</p>
+			</div>
+		</div>
+		<div class="form-group form-group-md" ng-if="person.imageData">
+			<label class="col-md-3 control-label">Existing Image</label>
+			<div class="col-md-7">
+				<img data-ng-src="{{person.imageData}}"/></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Upload Existing Photo</label>
+			<div class="col-md-3">
+				<input type="file" id="take-picture" accept="image/*"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<div class="col-md-10">
+				<img src="about:blank" alt="" id="show-picture" style="display:none;margin:auto;" height="200px"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">First Name</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" placeholder="First Name" data-ng-model="person.firstName"></div>
+			<label class="col-md-3 control-label">Last Name</label>
+			<div class="col-md-2">
+				<input type="text"	class="form-control" placeholder="Last Name" data-ng-model="person.lastName"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Gender</label>
+			<div class="col-md-7">
+				<input type="radio" data-ng-model="person.sex" value="Male">&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			<div class="col-md-3">
+				<input type="radio" data-ng-model="person.sex" value="Female">&nbsp;Female
+			</div>
+		</div>
+
+		
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Languages (Select Maximum 10)</label>
+			<div class="col-md-7">
+				<select id="languageSelectID" multiple="multiple" data-max="10"></select>
+			</div>
+
+		</div>
+		<br />
+
+		
+		<legend style="padding-left:5px;" style="padding-left:5px;">Professional Information</legend>
+		
+		
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">{{person.mode=='CA'?'Membership':'Enrollment'}} ID *</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="{{person.mode=='CA'?'Membership':'Enrollment'}} ID" data-ng-model="person.enrollmentId"></div>
+				<label class="col-md-2 control-label">Experience</label>
+			<div class="col-md-2">
+				<input type="number" class="form-control" placeholder="Exp. (in Years)" data-ng-model="person.experience"></div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Representation</label>
+			<div class="col-md-7">
+				<input type="radio" data-ng-model="person.representation" value="Individual">&nbsp;Individual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" data-ng-model="person.representation" value="Firm">&nbsp;Firm
+			</div>
+		</div>
+		
+		
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Case Types (Select Maximum 25)</label>
+			<div class="col-md-7">
+				<select id="caseTypeSelectID" multiple="multiple" data-max="25"></select>
+		</div>
+		</div>
+		
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Summary</label>
+			<div class="col-md-7">
+				<textarea data-ng-model="person.summary" class="form-control" placeholder="Brief about Yourself or Firm: Mention Qualifications, Affiliations, Sectors Specialization, Achievements, Publications etc."></textarea>
+			</div>
+		</div>
+		<br />
+		
+		<legend style="padding-left:5px;">Address Information</legend>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Address Line1</label>
+			<div class="col-md-3">
+				<input type="text"	class="form-control" placeholder="Address: Premises" data-ng-model="person.addressLine1"></div>
+			<div class="form-group form-group-md">
+			<label class="col-md-1 control-label">Line2</label>
+			<div class="col-md-3">
+				<input type="text"	class="form-control" placeholder="Address: Street" data-ng-model="person.addressLine2"></div>
+			</div>
+		</div>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Locality</label>
+			<div class="col-md-3">
+				<autocomplete click-activation="true" data-ng-model="person.locality" data="global.availableLocalities[person.city?person.city:global.city]" attr-placeholder="Address: Locality" attr-input-class="form-control"></autocomplete>
+			</div>
+			<label class="col-md-1 control-label">City *</label>
+			<div class="col-md-3">
+				<autocomplete click-activation="true" data-ng-model="person.city" data="global.allCities" attr-placeholder="City" attr-input-class="form-control"></autocomplete>
+			</div>
+		</div>
+		
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Map Location</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" placeholder="Latitude" data-ng-model="person.latitude"></div>
+			<div class="col-md-2">
+				<input type="text" class="form-control" placeholder="Longitude" data-ng-model="person.longitude"></div>
+			<div class="col-md-1">
+				<button class="btn btn-link" data-ng-click="getCurrentLocation()"> <i class="fa fa-crosshairs" style="font-size:1em;">&nbsp;Auto-detect Present Location</i>
+				</button>
+			</div>
+		</div>
+		<!--div class="form-group form-group-md">
+			<label class="col-md-3 control-label">State</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="State" data-ng-model="person.state"></div>
+			<label class="col-md-1 control-label">Pincode</label>
+			<div class="col-md-3">
+				<input type="number" class="form-control" placeholder="Pincode" data-ng-model="person.pin"></div>
+		</div-->
+		<br />
+
+		<legend style="padding-left:5px;">Contact Information</legend>
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Mobile Number (For India:+91)</label>
+			<div class="col-md-3">
+				<input type="number" class="form-control" placeholder="Mobile Number " data-ng-model="person.mobile"></div>
+			<label class="col-md-1 control-label">Landline</label>
+			<div class="col-md-1">
+				<input type="number" class="form-control" placeholder="STD" data-ng-model="person.std"></div>
+			<div class="col-md-2">
+				<input type="number" class="form-control" placeholder="Landline Number" data-ng-model="person.landline"></div>
+		</div>
+
+		<div class="form-group form-group-md">
+		<label class="col-md-3 control-label">Other Phone Numbers</label>
+			<div class="col-md-3">
+				<input class="form-control" placeholder="Phone Numbers (use commas)" data-ng-model="person.phones"></div>
+				<label class="col-md-1 control-label">Website</label>
+			<div class="col-md-3">
+				<input type="url" class="form-control" placeholder="Website" data-ng-model="person.website"></div>
+		</div>
+
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Email</label>
+			<div class="col-md-3">
+				<input type="email" class="form-control" placeholder="eg:abc@gmail.com (to manage profile)" data-ng-model="person.email"></div>
+			<label class="col-md-1 control-label">Password</label>
+			<div class="col-md-3">
+				<input type="password" class="form-control" placeholder="Password (specific to this website)" data-ng-model="person.password"></div>
+		</div>
+	
+		<div class="form-group form-group-md">
+			
+			<label class="col-md-3 control-label">Organization</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="Organization" data-ng-model="person.organization"></div>
+				<label class="col-md-1 control-label">Other Locations</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="Cities (use commas)" data-ng-model="person.locations"></div>
+		</div>
+				
+
+		
+				
+		<legend style="padding-left:5px;">Other Information</legend>
+
+		<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Additional Field 1(optional)</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="Define: For e.g.-Courts " data-ng-model="person.fieldName1"></div>
+				<label class="col-md-1 control-label">Value</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="Values: For e.g.- Name" data-ng-model="person.fieldValue1"></div>
+		</div>
+		<!--<div class="form-group form-group-md">
+			<label class="col-md-3 control-label">Additional Field 2(optional)</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="Define" data-ng-model="person.fieldName2"></div>
+				<label class="col-md-1 control-label">Value</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="Value" data-ng-model="person.fieldValue2">				
+		</div>-->
+		<br/><br/>
+		<div class="form-group form-group-md text-center">
+			<div class="col-md-12">
+				<p>
+					If you find difficulty registering as an <b>Advisor</b>
+					{ <b>Lawyer</b>
+					OR
+					<b>Chartered Accountant</b>
+					}:
+					<br />
+					Mail us at
+					<a href="mailto:contact@getmyadvisor.com">contact@getmyadvisor.com</a>
+					or Call us at
+					<b>+91-7026-99-2626</b>
+				</p>
+			</div>
+		</div>
+		<div class="form-group form-group-md">
+			<div class="col-md-10 text-center">
+				<button data-ng-click="submitData()" class="btn btn-primary">Submit</button>
+			</div>
+			<br>
+			<br></div>
+	</form>
+</div>
+<canvas id="canvas-picture" style="display:none;"></canvas>
